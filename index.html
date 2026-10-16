@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Fei | Personal Website</title>
+
+    <style>
+
+        /* =========================
+           基本設定
+        ========================== */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+
+        /* =========================
+           導覽列
+        ========================== */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 20px 10%;
+
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(10px);
+
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav a {
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+
+        /* =========================
+           首頁 Hero
+        ========================== */
+
+        .hero {
+            min-height: 100vh;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            padding: 100px 10% 40px;
+        }
+
+        .hero-container {
+            width: 100%;
+            max-width: 1100px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 60px;
+        }
+
+        .hero-text {
+            max-width: 650px;
+        }
+
+        .small-title {
+            color: #38bdf8;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            color: #94a3b8;
+            font-size: 20px;
+
+            max-width: 600px;
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           按鈕
+        ========================== */
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+
+            padding: 12px 24px;
+
+            border-radius: 8px;
+
+            background: #38bdf8;
+            color: #0f172a;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(56,189,248,0.3);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #38bdf8;
+
+            border: 1px solid #38bdf8;
+        }
+
+
+        /* =========================
+           頭像
+        ========================== */
+
+        .avatar {
+            min-width: 280px;
+            width: 280px;
+            height: 280px;
+
+            border-radius: 50%;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 90px;
+            font-weight: bold;
+
+            color: #0f172a;
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #38bdf8,
+                    #818cf8
+                );
+
+            box-shadow:
+                0 0 60px rgba(56,189,248,0.25);
+        }
+
+
+        /* =========================
+           共用 Section
+        ========================== */
+
+        section {
+            padding: 100px 10%;
+        }
+
+        .section-container {
+            max-width: 1100px;
+            margin: auto;
+        }
+
+        .section-title {
+            font-size: 36px;
+            margin-bottom: 40px;
+        }
+
+        .section-title span {
+            color: #38bdf8;
+        }
+
+
+        /* =========================
+           關於我
+        ========================== */
+
+        .about {
+            background: #111827;
+        }
+
+        .about p {
+            max-width: 800px;
+
+            color: #94a3b8;
+            font-size: 18px;
+
+            margin-bottom: 20px;
+        }
+
+
+        /* =========================
+           Skills
+        ========================== */
+
+        .skills-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(180px, 1fr));
+
+            gap: 20px;
+        }
+
+        .skill-card {
+            background: #1e293b;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            border: 1px solid transparent;
+
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-7px);
+
+            border-color: #38bdf8;
+
+            box-shadow:
+                0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .skill-card h3 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .skill-card p {
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           Projects
+        ========================== */
+
+        .projects {
+            background: #111827;
+        }
+
+        .projects-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+
+            gap: 25px;
+        }
+
+        .project-card {
+            background: #1e293b;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+        }
+
+        .project-number {
+            color: #38bdf8;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .project-card h3 {
+            font-size: 23px;
+            margin-bottom: 10px;
+        }
+
+        .project-card p {
+            color: #94a3b8;
+        }
+
+
+        /* =========================
+           Contact
+        ========================== */
+
+        .contact {
+            text-align: center;
+        }
+
+        .contact p {
+            color: #94a3b8;
+
+            font-size: 18px;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =========================
+           Footer
+        ========================== */
+
+        footer {
+            text-align: center;
+
+            padding: 30px;
+
+            color: #64748b;
+
+            border-top:
+                1px solid rgba(255,255,255,0.08);
+        }
+
+
+        /* =========================
+           JavaScript 動畫用
+        ========================== */
+
+        .hidden {
+            opacity: 0;
+
+            transform:
+                translateY(30px);
+
+            transition: 0.8s;
+        }
+
+        .show {
+            opacity: 1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        /* =========================
+           手機版
+        ========================== */
+
+        @media (max-width: 768px) {
+
+            nav ul {
+                display: none;
+            }
+
+            .hero-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .buttons {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .avatar {
+                min-width: 200px;
+                width: 200px;
+                height: 200px;
+
+                font-size: 65px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+    <!-- =========================
+         導覽列
+    ========================== -->
+
+    <nav>
+
+        <div class="logo">
+            FEI.
+        </div>
+
+        <ul>
+
+            <li>
+                <a href="#home">首頁</a>
+            </li>
+
+            <li>
+                <a href="#about">關於我</a>
+            </li>
+
+            <li>
+                <a href="#skills">技能</a>
+            </li>
+
+            <li>
+                <a href="#projects">作品</a>
+            </li>
+
+            <li>
+                <a href="#contact">聯絡</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- =========================
+         首頁
+    ========================== -->
+
+    <section
+        class="hero"
+        id="home"
+    >
+
+        <div class="hero-container">
+
+            <div class="hero-text">
+
+                <div class="small-title">
+                    Hello, I'm
+                </div>
+
+                <h1>
+                    徐非
+                    <br>
+                    <span>Web Developer</span>
+                </h1>
+
+                <p>
+                    我是一名正在學習網頁開發與電腦科學的學生，
+                    對 Web Development、網路技術以及程式設計充滿興趣。
+                </p>
+
+                <div class="buttons">
+
+                    <a
+                        href="#projects"
+                        class="btn"
+                    >
+                        查看作品
+                    </a>
+
+                    <a
+                        href="#contact"
+                        class="btn btn-outline"
+                    >
+                        聯絡我
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <div class="avatar">
+                F
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         關於我
+    ========================== -->
+
+    <section
+        class="about hidden"
+        id="about"
+    >
+
+        <div class="section-container">
+
+            <h2 class="section-title">
+                關於<span>我</span>
+            </h2>
+
+            <p>
+                我目前正在學習 HTML、CSS、JavaScript，
+                並透過 The Odin Project 建立自己的 Web Development 基礎。
+            </p>
+
+            <p>
+                除了網頁開發之外，我也正在學習資料結構、
+                Computer Organization、System Programming
+                以及 Computer Networks。
+            </p>
+
+            <p>
+                我的目標是逐漸建立完整的軟體開發能力，
+                並能夠獨立設計與開發真正可以使用的網站與系統。
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         Skills
+    ========================== -->
+
+    <section
+        class="hidden"
+        id="skills"
+    >
+
+        <div class="section-container">
+
+            <h2 class="section-title">
+                我的<span>技能</span>
+            </h2>
+
+
+            <div class="skills-grid">
+
+
+                <div class="skill-card">
+
+                    <h3>
+                        HTML
+                    </h3>
+
+                    <p>
+                        建立網頁的內容與結構。
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>
+                        CSS
+                    </h3>
+
+                    <p>
+                        網頁排版、樣式與 Responsive Design。
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>
+                        JavaScript
+                    </h3>
+
+                    <p>
+                        為網頁增加互動與程式邏輯。
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>
+                        C
+                    </h3>
+
+                    <p>
+                        基礎程式設計、Pointers 與資料結構。
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>
+                        Linux
+                    </h3>
+
+                    <p>
+                        Ubuntu、Terminal 與基礎 Server 操作。
+                    </p>
+
+                </div>
+
+
+                <div class="skill-card">
+
+                    <h3>
+                        Networking
+                    </h3>
+
+                    <p>
+                        DNS、HTTP、IP、TCP/IP 與網路基礎。
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         Projects
+    ========================== -->
+
+    <section
+        class="projects hidden"
+        id="projects"
+    >
+
+        <div class="section-container">
+
+            <h2 class="section-title">
+                我的<span>作品</span>
+            </h2>
+
+
+            <div class="projects-grid">
+
+
+                <div class="project-card">
+
+                    <div class="project-number">
+                        PROJECT 01
+                    </div>
+
+                    <h3>
+                        Personal Website
+                    </h3>
+
+                    <p>
+                        使用 HTML、CSS 與 JavaScript
+                        製作的個人網站。
+                    </p>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-number">
+                        PROJECT 02
+                    </div>
+
+                    <h3>
+                        Nginx Web Server
+                    </h3>
+
+                    <p>
+                        在 Ubuntu Virtual Machine
+                        上架設自己的 Nginx Web Server。
+                    </p>
+
+                </div>
+
+
+                <div class="project-card">
+
+                    <div class="project-number">
+                        PROJECT 03
+                    </div>
+
+                    <h3>
+                        Coming Soon
+                    </h3>
+
+                    <p>
+                        更多 Web Development
+                        專案正在開發中。
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         Contact
+    ========================== -->
+
+    <section
+        class="contact hidden"
+        id="contact"
+    >
+
+        <div class="section-container">
+
+            <h2 class="section-title">
+                聯絡<span>我</span>
+            </h2>
+
+            <p>
+                如果你對我的作品有興趣，
+                歡迎與我聯絡。
+            </p>
+
+            <a
+                class="btn"
+                href="mailto:your-email@example.com"
+            >
+                Send Email
+            </a>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         Footer
+    ========================== -->
+
+    <footer>
+
+        © 2026 Fei.
+        Built with HTML, CSS & JavaScript.
+
+    </footer>
+
+
+
+    <!-- =========================
+         JavaScript
+    ========================== -->
+
+    <script>
+
+        /*
+            找出所有 class="hidden" 的元素
+        */
+
+        const hiddenElements =
+            document.querySelectorAll(".hidden");
+
+
+        /*
+            建立觀察器
+
+            當元素出現在畫面時
+            加上 show class
+        */
+
+        const observer =
+            new IntersectionObserver(
+
+                (entries) => {
+
+                    entries.forEach((entry) => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target
+                                .classList
+                                .add("show");
+
+                        }
+
+                    });
+
+                }
+
+            );
+
+
+        /*
+            開始觀察每個 hidden 元素
+        */
+
+        hiddenElements.forEach(
+            (element) => {
+
+                observer.observe(element);
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
